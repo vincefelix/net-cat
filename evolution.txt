@@ -1,0 +1,7 @@
+ce programme est mal commente
+il il y 'a un soucis avec le flag --quitt
+sinnn il ne me reste qu'a: 
+commemter;
+separer les fonctions (good practice);
+implementer le flag --quit et celui pour changer de nom;
+et utiliser le package de github pour embellir le output.
