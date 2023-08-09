@@ -1,7 +1,13 @@
-ce programme est mal commente
-il il y 'a un soucis avec le flag --quitt
-sinnn il ne me reste qu'a: 
-commemter;
-separer les fonctions (good practice);
-implementer le flag --quit et celui pour changer de nom;
-et utiliser le package de github pour embellir le output.
+ce programme est à commenter
+j'ai enlevé le flag quit et integrer le flag --change qui permet de changer son username
+j'ai séparé les fonctions
+j'ai modifié la fonction history puis rajouté la fonction logs 
+en modifiant j'ai créer un problème avec ces deux fonctions 😒😭😢😢
+
+il faut:
+implementer 2 autres flags
+utiliser le package de github pour embellir le output.
+corriger les 2 fonctions
+fichier test 
+readme 
+channel (ceci pourrait regler le probleme du double appui sur entrée pour quitter la connex 😁😁😁😁)

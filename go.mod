@@ -1,3 +1,3 @@
-module client
+module tcp
 
 go 1.20
