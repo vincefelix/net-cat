@@ -5,7 +5,6 @@ import (
 	"log"
 	"net"
 	"os"
-	"strconv"
 	"time"
 )
 
@@ -39,7 +38,7 @@ func Specify_port() string {
 
 // history stores the chat messages in a file
 func history(mess string) {
-	file, err := os.Create("files/history.txt")
+	file, err := os.Create("files/history.log")
 	if err != nil {
 		fmt.Println("❌ Error while creation the history file")
 		return
@@ -57,7 +56,7 @@ func history(mess string) {
 func logs(notification string) {
 	time := time.Now().Format("2006-01-02 15:04:05") //changing the current time format to our will
 
-	file, err := os.Create("files/logs.txt")
+	file, err := os.Create("files/logs.log")
 	if err != nil {
 		fmt.Println("❌ Error while creation the history file")
 		return
@@ -72,9 +71,25 @@ func logs(notification string) {
 
 // this Atoi returs an int an 0 instead of error
 func Atoi(s string) int {
-	num, err := strconv.Atoi(s)
-	if err != nil {
+	x := 0
+	mult := 1
+	i := 0
+	if len(s) == 0 {
 		return 0
 	}
-	return num
+	if s[0] == '-' {
+		mult = -1
+		i++
+	} else if s[0] == '+' {
+		mult = 1
+		i++
+	}
+	for i < len(s) {
+		x = x*10 + int((s[i])-48)
+		if (int(s[i])-48) > 9 || (int(s[i])-48) < 0 {
+			return 0
+		}
+		i++
+	}
+	return x * mult
 }

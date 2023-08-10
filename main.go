@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	_, _ = os.Create("files/history.txt") // history file
+	_, _ = os.Create("files/history.log") // history file
 
 	// Create channels for incoming connections and server shutdown
 	connect := make(chan net.Conn)

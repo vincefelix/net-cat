@@ -28,10 +28,10 @@ func (c *Client) Room(conn net.Conn, initial string) {
 			c.change(conn, initial)
 			continue
 		} else if strings.TrimSpace(message) == "--av" { // user wants to change his avatar
-			c.change_av(conn, initial)
+			c.change_av(conn, c.nickname)
 			continue
 		} else if strings.TrimSpace(message) == "--rmav" { // user wants to remove his avatar
-			c.remove_avatar(initial)
+			c.remove_avatar(c.nickname)
 			continue
 		} else if strings.TrimSpace(message) == "" { //cannot send an empty message
 			continue //pursue the loop

@@ -58,8 +58,8 @@
     [2023-08-10 13:46:01][nabou]: 
 
 ***
-**exit chat** : you can exit the chat using the <**CTRL + C**>
-
+**exit chat** : you can exit the chat using the <**CTRL + C**>  
+**Ex:**
 ### mthiaw 's POV :
 
     🟢 vindour has joined our chat...

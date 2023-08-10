@@ -50,7 +50,7 @@ func HandleClient(conn net.Conn) {
 		logs(join_mess)                     // storing activity in a log file
 		fmt.Print(join_mess)                //terminal logs
 
-		history_show, _ := os.ReadFile("files/history.txt") //displaying the chat history for a newcomer
+		history_show, _ := os.ReadFile("files/history.log") //displaying the chat history for a newcomer
 		conn.Write(history_show)                            //writing to user's connection address
 
 		defer func() {
