@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	_, _ = os.Create("history.txt")
+	_, _ = os.Create("files/history.txt")
 
 	// Create channels for incoming connections and server shutdown
 	connect := make(chan net.Conn)
@@ -19,11 +19,11 @@ func main() {
 	port := tcp.Specify_port()
 	listener, err := net.Listen("tcp", port)
 	if err != nil {
-		log.Fatalf("Error while listening to port %s : %s", port, err)
+		log.Fatalf("❌ Error while listening to port %s : %s", port, err)
 	}
 	defer listener.Close()
 
-	fmt.Printf("Server listen on port: %s\n", port)
+	fmt.Printf("🌐 Server listen on port: %s\n", port)
 
 	// Goroutine to handle incoming connections and signal shutdown
 	go func() {
@@ -36,7 +36,7 @@ func main() {
 			default:
 				conn, err := listener.Accept()
 				if err != nil {
-					log.Printf("Error while establishing connection: %s", err)
+					log.Printf("🌐❌🔌 Error while establishing connection: %s", err)
 					continue
 				}
 				connect <- conn
