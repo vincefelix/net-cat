@@ -33,8 +33,8 @@ func HandleClient(conn net.Conn) {
 			}
 
 			client.nickname = strings.TrimSpace(username)
-			if client.nickname == "" { // username can't be empty
-				conn.Write([]byte("❌ The name is not valid please try again\n"))
+			if client.nickname == "" || len(client.nickname) > 20 { // username can't be empty
+				conn.Write([]byte("❌ The name is not valid please or too long try again\n"))
 				name_invalid := fmt.Sprintf("❌ User %s entered an invalid name.\n", conn.LocalAddr().String())
 				logs(name_invalid)      // storing activity in a log file
 				fmt.Print(name_invalid) //terminal logs

@@ -28,7 +28,7 @@ func Specify_port() string {
 	port := ""
 	args := os.Args[1:]
 	if len(args) > 1 {
-		log.Fatalln("USAGE]: ./TCPChat $port")
+		log.Fatalln("[USAGE]: ./TCPChat $port")
 	} else if len(args) == 1 {
 		port = ":" + args[0]
 	} else {

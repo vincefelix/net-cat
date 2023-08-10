@@ -23,7 +23,7 @@ func main() {
 	}
 	defer listener.Close()
 
-	fmt.Printf("🌐 Server listen on port: %s\n", port)
+	fmt.Printf("🌐 Server listening on port%s\n", port)
 
 	// Goroutine to handle incoming connections and signal shutdown
 	go func() {

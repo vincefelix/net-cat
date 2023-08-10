@@ -89,8 +89,8 @@ func (c *Client) change(conn net.Conn, initial string) {
 		}
 
 		c.nickname = strings.TrimSpace(username)
-		if c.nickname == "" {
-			conn.Write([]byte("❌ The name is not valid please try again\n"))
+		if c.nickname == "" || len(c.nickname) > 20 {
+			conn.Write([]byte("❌ The name is not valid or too long please try again\n"))
 			name_invalid := fmt.Sprintf("❌ User %s entered an invalid name.\n", conn.LocalAddr().String())
 			logs(name_invalid)      // storing activity in a log file
 			fmt.Print(name_invalid) //terminal logs
