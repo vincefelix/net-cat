@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	_, _ = os.Create("files/history.txt")
+	_, _ = os.Create("files/history.txt") // history file
 
 	// Create channels for incoming connections and server shutdown
 	connect := make(chan net.Conn)
@@ -36,7 +36,7 @@ func main() {
 			default:
 				conn, err := listener.Accept()
 				if err != nil {
-					log.Printf("🌐❌🔌 Error while establishing connection: %s", err)
+					log.Printf("🌐--❌--🔌 Error while establishing connection: %s", err)
 					continue
 				}
 				connect <- conn

@@ -6,8 +6,11 @@ import (
 	"strings"
 )
 
+// change_av allows to user to put an avatar next to his name using the --av flag.
+// he has the choice between 14 avatars
 func (c *Client) change_av(conn net.Conn, initial string) {
 	for {
+		//dislaying the avatar list
 		conn.Write([]byte("💠 Pick an avatar:\n\n1- 🧔\n\n2- 👩‍🦰️\n\n3- 🤴️\n\n4- 👸️\n\n5- 🧝‍♀️️\n\n6- 👩‍💻️\n\n7- 🐼️ \n\n8- 🧞‍♀️️\n\n9- 🕴️\n\n10-🕺️\n\n11- 💃️\n\n12- 🦩️\n\n13- 🦚️\n\n14- 🐞️\n"))
 		avatar, err := c.readInput()
 		if err != nil {
@@ -19,12 +22,13 @@ func (c *Client) change_av(conn net.Conn, initial string) {
 		}
 
 		c.nickname = strings.TrimSpace(avatar)
+		// cannot enter empty input neither a negative number nor a number exceeding the list size
 		if c.nickname == "" || Atoi(c.nickname) <= 0 || Atoi(c.nickname) > 14 {
 			conn.Write([]byte("❌ invalid avatar try again\n"))
 			name_invalid := fmt.Sprintf("❌ %s entered an invalid avatar number.\n", initial)
 			logs(name_invalid)
 			fmt.Print(name_invalid)
-			continue
+			continue // pursue the loop
 		} else if c.nickname != "" {
 			switch c.nickname {
 			case "1":
@@ -55,6 +59,8 @@ func (c *Client) change_av(conn net.Conn, initial string) {
 				c.nickname = "🦚️ " + initial
 			case "14":
 				c.nickname = "🐞️ " + initial
+			default: // returning the initial nickname
+				c.nickname = initial
 			}
 			break
 
@@ -62,21 +68,23 @@ func (c *Client) change_av(conn net.Conn, initial string) {
 			break
 		}
 	}
+
 	change_mess := fmt.Sprintf("🔁 %s has changed his avatar to %s ...\n", initial, c.nickname)
-	c.Sendmess(change_mess, clients)
-	logs(change_mess)
-	fmt.Print(change_mess)
+	c.Sendmess(change_mess, clients) //notifying the chatromm members
+	logs(change_mess)                // storing activity in a log file
+	fmt.Print(change_mess)           //terminal logs
 }
 
+// change allows to the user to change his name using the --nick flag
 func (c *Client) change(conn net.Conn, initial string) {
 	for {
 		conn.Write([]byte("[ENTER YOUR NAME] ➡ : "))
 		username, err := c.readInput()
 		if err != nil {
 			name_error := fmt.Sprintf("❌ Error while receiving the username: %s\n", err)
-			logs(name_error)
-			fmt.Print(name_error)
-			conn.Close()
+			logs(name_error)      // storing activity in a log file
+			fmt.Print(name_error) //terminal logs
+			conn.Close()          // shutting the onnection
 			return
 		}
 
@@ -84,23 +92,24 @@ func (c *Client) change(conn net.Conn, initial string) {
 		if c.nickname == "" {
 			conn.Write([]byte("❌ The name is not valid please try again\n"))
 			name_invalid := fmt.Sprintf("❌ User %s entered an invalid name.\n", conn.LocalAddr().String())
-			logs(name_invalid)
-			fmt.Print(name_invalid)
-			continue
+			logs(name_invalid)      // storing activity in a log file
+			fmt.Print(name_invalid) //terminal logs
+			continue                //pursue the loop
 		} else {
 			break
 		}
 	}
 	change_mess := fmt.Sprintf("🔁 %s has changed his username to %s ...\n", initial, c.nickname)
-	c.Sendmess(change_mess, clients)
-	logs(change_mess)
-	fmt.Print(change_mess)
+	c.Sendmess(change_mess, clients) //notifying the chatromm members
+	logs(change_mess)                // storing activity in a log file
+	fmt.Print(change_mess)           //terminal logs
 }
 
+// remove_avatar removes the added avatar to username using the --rmav flag
 func (c *Client) remove_avatar(initial string) {
 	change_mess := fmt.Sprintf("%s has removed his avatar...\n", initial)
 	c.nickname = initial
-	c.Sendmess(change_mess, clients)
-	logs(change_mess)
-	fmt.Print(change_mess)
+	c.Sendmess(change_mess, clients) //notifying the chatromm members
+	logs(change_mess)                // storing activity in a log file
+	fmt.Print(change_mess)           //terminal logs
 }
